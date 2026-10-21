@@ -79,3 +79,13 @@ document.querySelectorAll('.ajuda-compact .help-panel').forEach(function(panel){
     document.querySelectorAll('.ajuda-compact .help-panel').forEach(function(other){if(other!==panel)other.open=false;});
   });
 });
+
+
+
+function alternarVisibilidadeSenha(idCampo) {
+  const campo = document.getElementById(idCampo);
+
+  if (!campo) return;
+
+  campo.type = campo.type === "password" ? "text" : "password";
+}
