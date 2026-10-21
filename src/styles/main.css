@@ -89,3 +89,19 @@ main{max-width:1160px;margin:auto}.normal{max-width:none}.dashboard-hero{positio
 /* Central de Ajuda — acesso imediato, explicações recolhíveis */
 .ajuda-compact .en-fast-shell{max-width:780px}.ajuda-compact .fast-hero{padding:34px 0 16px}.ajuda-compact .fast-hero h1{font-family:inherit;font-weight:650;letter-spacing:-.045em;font-size:clamp(1.85rem,4.2vw,2.7rem);max-width:590px}.ajuda-compact .fast-call{border-radius:13px;min-height:88px}.ajuda-compact .fast-call>span{border-radius:10px}.help-compact-heading{margin:25px 0 14px}.help-compact-heading h2{font-family:inherit;font-size:1.2rem;font-weight:750;letter-spacing:-.025em;margin:0 0 4px;color:var(--ink)}.help-compact-heading p{font-size:.85rem;color:var(--muted);margin:0}.help-accordion{border-top:1px solid var(--line)}.help-panel{border-bottom:1px solid var(--line);scroll-margin-top:90px}.help-panel>summary{list-style:none;display:flex;align-items:center;gap:15px;padding:19px 4px;cursor:pointer;min-height:78px}.help-panel>summary::-webkit-details-marker,.help-nested summary::-webkit-details-marker{display:none}.help-symbol{font-size:.74rem;color:var(--pink-dark);font-weight:800;display:grid;place-items:center;background:var(--pink3);border-radius:10px;width:42px;height:42px;flex-shrink:0}.help-panel>summary>span:nth-child(2){flex:1;min-width:0}.help-panel>summary b,.help-panel>summary small{display:block}.help-panel>summary b{font-size:.97rem;font-weight:750;color:var(--ink)}.help-panel>summary small{font-size:.76rem;color:var(--muted);margin-top:3px}.help-chevron{font-size:1.3rem;color:var(--pink-dark);font-weight:400;transition:transform .2s}.help-panel[open] .help-chevron{transform:rotate(45deg)}.help-panel-body{padding:0 6px 20px 61px;font-size:.87rem;line-height:1.65;color:var(--muted)}.help-panel-body p{margin:0 0 10px}.help-panel-body ul{margin:8px 0 0;padding-left:20px}.help-panel-body li{margin:7px 0}.help-panel-body b{color:var(--ink)}.help-nested{border-top:1px solid var(--line)}.help-nested details{border-bottom:1px solid var(--line)}.help-nested summary{list-style:none;cursor:pointer;padding:13px 0;font-weight:650;color:var(--ink)}.help-nested summary:after{content:'+';float:right;color:var(--pink)}.help-nested details[open] summary:after{content:'−'}.help-nested p{padding:0 0 12px}.help-small-link{display:inline-block;color:var(--pink-dark);font-weight:750;text-decoration:underline;text-underline-offset:4px}.help-contact-list a{display:grid;grid-template-columns:46px 1fr 20px;gap:10px;align-items:center;text-decoration:none;color:var(--ink);padding:12px 0;border-bottom:1px solid var(--line)}.help-contact-list a b{color:var(--pink-dark);font-size:1.1rem}.help-contact-list a span:last-child{text-align:right;color:var(--pink-dark)}.ajuda-compact .fast-safety{margin-top:28px;border-radius:10px}.ajuda-compact summary:focus-visible,.ajuda-compact a:focus-visible{outline:3px solid var(--pink);outline-offset:3px}@media(max-width:600px){.ajuda-compact .fast-hero{padding:24px 0 12px}.ajuda-compact .fast-call{min-height:74px}.help-panel-body{padding-left:5px}.help-panel>summary{gap:12px}}
 @media(prefers-reduced-motion:reduce){.help-chevron{transition:none}}
+/* Melhoria visual dos botões */
+button {
+    transition: transform 0.2s ease,
+                box-shadow 0.2s ease;
+  }
+  
+  @media (hover: hover) {
+    button:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    }
+  }
+  
+  button:active:not(:disabled) {
+    transform: scale(0.98);
+  }
