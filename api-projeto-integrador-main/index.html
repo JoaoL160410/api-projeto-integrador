@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Florescer: calendário de ciclo, sintomas, bem-estar e anotações pessoais.">
+<title>Florescer | Meu ciclo</title>
+</head><body>
+<div id="auth-screen" class="auth-screen landing-auth">
+  <section class="landing-intro" aria-label="Conheça o Florescer">
+    <a class="landing-logo" href="#" aria-label="Florescer, início"><span class="landing-flower">✳</span> florescer<span class="landing-logo-dot">.</span></a>
+    <div class="landing-copy"><div class="landing-kicker"><span class="landing-kicker-line"></span> UM ESPAÇO SÓ SEU</div>
+      <h1>Seu ciclo.<br><em>Seu tempo.</em><br>Seu jeito.</h1>
+      <p>Entenda seus padrões, acompanhe seus dias e guarde o que importa — tudo em um lugar leve e feito para você.</p>
+      <div class="landing-features"><span><i></i> Calendário pessoal</span><span><i></i> Registro diário</span><span><i></i> Seu histórico</span></div>
+    </div>
+    <div class="landing-visual" aria-hidden="true"><div class="visual-halo"></div><div class="visual-phone phone-back"><div class="mini-top">florescer <span>✳</span></div><div class="mini-title">Outubro <span>⌄</span></div><div class="mini-week">D S T Q Q S S</div><div class="mini-dates">1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28</div><div class="mini-pill">Seu ritmo, todos os dias.</div></div><div class="visual-phone phone-front"><div class="mini-top">bom dia, flor <span>✳</span></div><div class="mini-overline">SEU CICLO HOJE</div><div class="mini-orb"><span>Dia do ciclo</span><strong>12</strong><small>um dia de cada vez</small></div><div class="mini-bottom"><b>Como você está?</b><div>☀ &nbsp; ☾ &nbsp; ♡</div></div></div><div class="visual-spark spark-one">✳</div><div class="visual-spark spark-two">✧</div></div>
+    <div class="landing-foot"><span>Bem-estar começa com atenção a você.</span><span>© Florescer 2026</span></div>
+  </section>
+  <section class="landing-login" aria-label="Acessar Florescer"><div class="login-inner">
+    <div class="login-eyebrow">BEM-VINDA AO FLORESCER</div><h2>Que bom ter você aqui.</h2><p class="login-subtitle">Entre na sua conta ou comece seu espaço pessoal.</p>
+    <div class="auth-tabs" role="group" aria-label="Entrar ou criar conta"><button id="tab-login" class="active" type="button">Entrar</button><button id="tab-cadastro" type="button">Criar conta</button></div>
+    <form id="form-login" class="auth-form"><label for="login-user">Nome de usuário<input id="login-user" autocomplete="username" required placeholder="Digite seu usuário"></label><label for="login-pass">Senha<input id="login-pass" type="password" autocomplete="current-password" required minlength="8" placeholder="Digite sua senha"></label><button class="primary big login-submit" type="submit">Entrar <span aria-hidden="true">→</span></button><p id="login-status" class="status" aria-live="polite"></p></form>
+    <form id="form-cadastro" class="auth-form" hidden><label for="cad-nome">Como quer ser chamada?<input id="cad-nome" required maxlength="30" placeholder="Seu nome ou apelido"></label><label for="cad-user">Nome de usuário<input id="cad-user" required maxlength="30" autocomplete="username" placeholder="Escolha um usuário"></label><label for="cad-pass">Senha<input id="cad-pass" type="password" required minlength="8" autocomplete="new-password" placeholder="Crie uma senha com 8 caracteres ou mais"></label><button class="primary big login-submit" type="submit">Criar minha conta <span aria-hidden="true">→</span></button><p id="cad-status" class="status" aria-live="polite"></p></form>
+    <div class="login-divider"><span></span><span>UM POUCO SOBRE NÓS</span><span></span></div><div class="login-about"><span class="about-icon">✳</span><p>O Florescer é seu cantinho para acompanhar o ciclo, registrar sintomas e conhecer melhor sua rotina.</p></div>
+    <p class="auth-note">Sua conta e seus registros são armazenados no banco do serviço. Use uma senha exclusiva e saia da conta em dispositivos compartilhados.</p>
+  </div><div class="login-bottom">Feito para acompanhar você, no seu ritmo. <span>✳</span></div></section>
+</div>
+
+<div id="account-sheet" class="account-sheet" hidden>
+ <div class="sheet-backdrop" data-close-account></div>
+ <section class="account-panel" role="dialog" aria-modal="true" aria-labelledby="conta-titulo">
+  <div class="account-head"><div><small>MINHA CONTA</small><h2 id="conta-titulo">Personalizar Florescer</h2></div><button class="icon-btn" data-close-account>×</button></div>
+  <div class="account-avatar" id="account-avatar">F</div>
+  <label>Nome exibido<input id="perfil-nome" maxlength="30"></label>
+  <label>Nome de usuário<input id="perfil-user" disabled></label>
+  <label>Cor do aplicativo<select id="perfil-tema"><option value="rosa">Rosa Florescer</option><option value="lilas">Lilás</option><option value="verde">Verde suave</option><option value="terracota">Terracota</option></select></label>
+  <label>Duração padrão do ciclo<input id="perfil-ciclo" type="number" min="20" max="45" value="28"></label>
+  <button id="salvar-perfil" class="primary">Salvar personalização</button>
+  <hr>
+  <h3>Seus dados</h3><p class="account-copy">Exporte seus ciclos, sintomas e anotações para guardar uma cópia ou compartilhar com alguém de sua confiança.</p>
+  <div class="account-actions"><button id="compartilhar-dados" class="secondary">Compartilhar dados</button><button id="exportar-dados" class="secondary">Baixar cópia</button><label class="import-btn">Importar cópia<input id="importar-dados" type="file" accept="application/json" hidden></label></div>
+  <p id="account-status" class="status"></p>
+  <button id="sair-conta" class="danger-soft full">Sair da conta</button>
+ </section>
+</div>
+
+<header class="top"><a class="brand" href="#inicio"><span class="brand-mark">✿</span> Florescer</a><nav><a href="#inicio">Hoje</a><a href="#calendario">Calendário</a><a href="#registro">Registrar</a><a href="#insights">Insights</a></nav><button id="perfil" class="profile" aria-label="Perfil">F</button></header>
+<main>
+<section id="normal" class="normal">
+<section id="inicio" class="dashboard-hero">
+  <div class="hello"><span class="eyebrow">UM MOMENTO SÓ SEU</span><h1 id="saudacao">Seu espaço de cuidado</h1><p>Um dia de cada vez. Seu calendário, suas anotações e tudo sobre seu ciclo em um só lugar.</p></div>
+  <div class="cycle-orb"><div class="orb-inner"><span id="dia-ciclo-label">Dia do ciclo</span><strong id="dia-ciclo">—</strong><small id="fase-ciclo">Adicione uma menstruação para começar</small></div></div>
+  <div class="hero-actions"><button id="registrar-hoje" class="primary big">Registrar meu dia</button><button id="abrir-calendario" class="secondary big">Explorar calendário</button></div>
+</section>
+
+<div class="editorial-divider"><span>SEU ACOMPANHAMENTO</span><span>✳</span></div>
+<section class="quick-stats" aria-label="Resumo do ciclo">
+ <article><span class="stat-icon">◷</span><div><small>Próxima menstruação</small><strong id="proxima-menstruacao">Sem previsão</strong></div></article>
+ <article><span class="stat-icon">○</span><div><small>Duração média</small><strong id="duracao-media">—</strong></div></article>
+ <article><span class="stat-icon">✦</span><div><small>Registros este mês</small><strong id="total-registros">0</strong></div></article>
+</section>
+
+<section id="registro" class="section-block"><div class="section-title"><div><span class="tag">Check-in diário</span><h2>Como você está hoje?</h2><p>Selecione o que combina com seu dia. Você pode alterar depois.</p></div></div>
+<div class="tracker-grid">
+ <button class="tracker" data-track="humor" data-value="Bem"><span>😊</span><b>Bem</b></button>
+ <button class="tracker" data-track="humor" data-value="Sensível"><span>🥹</span><b>Sensível</b></button>
+ <button class="tracker" data-track="humor" data-value="Irritada"><span>😤</span><b>Irritada</b></button>
+ <button class="tracker" data-track="sintoma" data-value="Cólica"><span>〰</span><b>Cólica</b></button>
+ <button class="tracker" data-track="sintoma" data-value="Dor de cabeça"><span>✦</span><b>Dor de cabeça</b></button>
+ <button class="tracker" data-track="sintoma" data-value="Inchaço"><span>◌</span><b>Inchaço</b></button>
+ <button class="tracker" data-track="energia" data-value="Alta"><span>⚡</span><b>Energia alta</b></button>
+ <button class="tracker" data-track="sono" data-value="Bom"><span>☾</span><b>Dormi bem</b></button>
+</div><p id="tracker-status" class="status" aria-live="polite"></p></section>
+
+<section id="calendario" class="section-block"><div class="section-title"><div><span class="tag">Visão mensal</span><h2>Seu calendário</h2><p>Toque em um dia para registrar menstruação, sintomas ou uma anotação.</p></div><button id="ir-hoje" class="soft-btn">Hoje</button></div>
+<div class="calendar-shell"><div class="calendar"><div class="cal-head"><button id="prev" aria-label="Mês anterior">‹</button><strong id="mes"></strong><button id="next" aria-label="Próximo mês">›</button></div><div class="week"><span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span></div><div id="dias" class="days"></div></div>
+<aside class="month-summary"><span class="tag">Resumo</span><h3>Este mês</h3><div class="summary-row"><span>Dias menstruais</span><b id="dias-periodo">0</b></div><div class="summary-row"><span>Dias com sintomas</span><b id="dias-sintomas">0</b></div><div class="summary-row"><span>Anotações</span><b id="dias-notas">0</b></div><p class="summary-tip">Quanto mais você registra, mais fácil fica visualizar seus próprios padrões.</p></aside></div>
+<div class="legend"><span><i class="dot period"></i> Menstruação</span><span><i class="dot fertile"></i> Período estimado</span><span><i class="dot note"></i> Com registro</span></div></section>
+
+<section id="notas" class="note-panel" hidden><div class="note-head"><div><span class="tag">Registro do dia</span><h2 id="data-selecionada">Anotação</h2></div><button id="fechar-nota" class="icon-btn" aria-label="Fechar">×</button></div>
+<div class="form-grid"><div><label for="fluxo">Fluxo menstrual</label><select id="fluxo"><option value="">Não registrar</option><option>Leve</option><option>Moderado</option><option>Intenso</option></select></div><div><label for="humor-dia">Humor</label><select id="humor-dia"><option value="">Não registrar</option><option>Bem</option><option>Sensível</option><option>Irritada</option><option>Ansiosa</option><option>Tranquila</option></select></div></div>
+<label>Sintomas</label><div class="symptom-pills"><label><input type="checkbox" value="Cólica"> Cólica</label><label><input type="checkbox" value="Dor de cabeça"> Dor de cabeça</label><label><input type="checkbox" value="Inchaço"> Inchaço</label><label><input type="checkbox" value="Cansaço"> Cansaço</label></div>
+<label for="anotacao">Anotação</label><textarea id="anotacao" rows="4" maxlength="500" placeholder="Ex.: como foi seu dia, lembretes ou observações..."></textarea><div class="mark-box"><label><input id="marcar-ciclo" type="checkbox"> Marcar este dia como menstruação</label></div><div class="note-actions"><button id="salvar-nota" class="primary">Salvar registro</button><button id="excluir-nota" class="danger-soft">Limpar dia</button></div><p id="status-nota" class="status" aria-live="polite"></p><p class="privacy-note">Os registros são enviados à sua conta. Não use um dispositivo compartilhado sem sair da conta.</p></section>
+
+<section id="insights" class="section-block"><div class="section-title"><div><span class="tag">Seu histórico</span><h2>Insights do Florescer</h2><p>Um resumo simples baseado apenas no que você registrou.</p></div></div><div class="insight-grid"><article><span class="insight-icon">✿</span><h3>Último registro</h3><p id="ultimo-registro">Você ainda não adicionou registros.</p></article><article><span class="insight-icon">☾</span><h3>Sintoma mais registrado</h3><p id="sintoma-frequente">Registre sintomas para ver seu resumo.</p></article><article><span class="insight-icon">♡</span><h3>Lembrete</h3><p>As estimativas do calendário são apenas informativas e não substituem orientação de um profissional de saúde.</p></article></div></section>
+
+<section class="stories"><div class="section-title"><div><span class="tag">Para você</span><h2>Um pouco de cuidado para você</h2></div></div><div class="story-row"><article><div class="story-art art-one"></div><small>ROTINA</small><h3>Observe seus padrões</h3><p>Registrar como você se sente pode ajudar a comparar diferentes momentos do mês.</p></article><article><div class="story-art art-two"></div><small>BEM-ESTAR</small><h3>Cuide do básico</h3><p>Hidratação, descanso e alimentação regular fazem parte de uma rotina de autocuidado.</p></article><article><div class="story-art art-three"></div><small>ORGANIZAÇÃO</small><h3>Leve seu histórico</h3><p>Se algo estiver incomodando, seus registros podem ajudar você a explicar o que percebeu a um responsável ou profissional de saúde.</p></article></div></section>
+</section>
+
+<section id="ajuda" class="ajuda ajuda-v11 ajuda-v12 ajuda-compact" hidden aria-live="polite">
+  <header class="en-header">
+    <div class="en-brand"><span class="en-flower">✿</span><div><b>Entre Nós</b><small>apoio rápido e discreto</small></div></div>
+    <button id="voltar-disfarce" class="en-exit" type="button">Voltar</button>
+  </header>
+
+  <div class="en-shell en-fast-shell">
+    <section class="fast-hero">
+      <small>COMO PODEMOS AJUDAR?</small>
+      <h1>Escolha o que você precisa agora.</h1>
+      <div class="fast-emergency">
+        <a href="tel:190" class="fast-call emergency"><span>190</span><div><b>Estou em perigo agora</b><small>Ligar para a Polícia Militar</small></div><strong>☎</strong></a>
+        <a href="tel:180" class="fast-call"><span>180</span><div><b>Quero orientação</b><small>Central de Atendimento à Mulher</small></div><strong>☎</strong></a>
+      </div>
+    </section>
+
+    <div class="help-compact-heading"><h2>Informações e apoio</h2><p>Toque em um assunto para ler mais.</p></div>
+    <div class="help-accordion" id="help-accordion">
+      <details id="en-sinais" class="help-panel"><summary><span class="help-symbol">01</span><span><b>Sinais de alerta</b><small>Controle, ameaças e isolamento</small></span><span class="help-chevron" aria-hidden="true">+</span></summary><div class="help-panel-body"><p>Alguns comportamentos podem indicar violência. Observe situações recorrentes de controle, medo ou isolamento.</p><ul><li><b>Controle:</b> monitorar amizades, roupas, celular ou deslocamentos.</li><li><b>Ameaças:</b> intimidar ou fazer você sentir medo.</li><li><b>Isolamento:</b> afastar de pessoas de confiança.</li><li><b>Dinheiro e documentos:</b> restringir acesso a recursos ou bens.</li></ul></div></details>
+      <details id="en-tipos" class="help-panel"><summary><span class="help-symbol">02</span><span><b>Tipos de violência</b><small>Conheça as cinco formas previstas em lei</small></span><span class="help-chevron" aria-hidden="true">+</span></summary><div class="help-panel-body"><div class="help-nested"><details><summary>Física</summary><p>Condutas que afetam a integridade ou a saúde corporal.</p></details><details><summary>Psicológica</summary><p>Ameaças, humilhação, manipulação e controle que prejudicam o bem-estar emocional.</p></details><details><summary>Sexual</summary><p>Condutas sexuais impostas sem consentimento.</p></details><details><summary>Patrimonial</summary><p>Retenção, destruição ou controle de bens, valores e documentos.</p></details><details><summary>Moral</summary><p>Calúnia, difamação e injúria.</p></details></div></div></details>
+      <details id="en-direitos" class="help-panel"><summary><span class="help-symbol">03</span><span><b>Seus direitos</b><small>Proteção e atendimento</small></span><span class="help-chevron" aria-hidden="true">+</span></summary><div class="help-panel-body"><p>Você pode buscar orientação sobre medidas protetivas e atendimento pela rede de apoio. O acesso aos serviços depende da situação e da disponibilidade local.</p><a class="help-small-link" href="tel:180">Pedir orientação pelo 180 →</a></div></details>
+      <details id="en-canais" class="help-panel"><summary><span class="help-symbol">04</span><span><b>Outros contatos</b><small>Serviços nacionais de atendimento</small></span><span class="help-chevron" aria-hidden="true">+</span></summary><div class="help-panel-body"><div class="help-contact-list"><a href="tel:180"><b>180</b><span>Atendimento à Mulher</span><span>↗</span></a><a href="tel:190"><b>190</b><span>Polícia Militar</span><span>↗</span></a><a href="tel:100"><b>100</b><span>Direitos Humanos</span><span>↗</span></a><a href="tel:192"><b>192</b><span>SAMU</span><span>↗</span></a></div></div></details>
+    </div>
+
+    <section id="en-seguranca" class="fast-safety">
+      <span>◉</span><div><b>Saída rápida</b><small>Pressione <kbd>Esc</kbd> para voltar ao Florescer. Isso não apaga o histórico do navegador.</small></div>
+    </section>
+    <p class="fast-disclaimer">Conteúdo informativo. Em risco imediato, ligue <b>190</b>.</p>
+  </div>
+</section>
+<nav class="mobile-nav" aria-label="Navegação do Florescer"><a href="#inicio"><span>⌂</span>Hoje</a><a href="#calendario"><span>▦</span>Calendário</a><a href="#registro"><span>＋</span>Registrar</a><a href="#insights"><span>♡</span>Resumo</a></nav>
+</main>
+<footer><span><b>✿ Florescer</b> • Seu ciclo, no seu ritmo</span><button id="atalho" title="Acessibilidade" aria-label="Abrir opções">●</button></footer><script type="module" src="/src/main.ts"></script></body></html>
