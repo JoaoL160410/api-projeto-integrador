@@ -7,6 +7,7 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { Prisma } from "../../generated/prisma/client";
 import { prisma } from "./db/prisma";
+import { requireAuth, type AuthRequest } from "./middleware/requireAuth";
 
 const scrypt = promisify(scryptCallback);
 const app = express();
@@ -25,7 +26,7 @@ const cookieName = "florescer_session";
 const sessionDurationSeconds = 60 * 60 * 24 * 7;
 
 type SessionPayload = { userId: number; expiresAt: number };
-type AuthRequest = Request & { userId?: number };
+
 
 type RecordInput = {
   date: string;
@@ -86,15 +87,7 @@ function readCookie(req: Request, name: string): string | undefined {
   return undefined;
 }
 
-function requireAuth(req: AuthRequest, res: Response, next: NextFunction): void {
-  const session = verifySession(readCookie(req, cookieName));
-  if (!session) {
-    res.status(401).json({ error: "Faça login para continuar." });
-    return;
-  }
-  req.userId = session.userId;
-  next();
-}
+
 
 function normalizeUsername(value: unknown): string | null {
   if (typeof value !== "string") return null;
