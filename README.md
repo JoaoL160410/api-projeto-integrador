@@ -64,3 +64,4 @@ A versão original guardava dados no navegador. Cadastre novamente a conta na ve
 ## Área Entre Nós
 
 A área de ajuda oferece ações rápidas e painéis HTML `<details>` recolhíveis. As informações são educativas e não substituem orientação médica, jurídica ou atendimento de emergência.
+ a a a a a a a
