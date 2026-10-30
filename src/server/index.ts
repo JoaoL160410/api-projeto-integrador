@@ -222,18 +222,7 @@ app.get("/api/auth/me", requireAuth, async (req: AuthRequest, res, next) => {
   } catch (error) { next(error); }
 });
 
-app.patch("/api/profile", requireAuth, async (req: AuthRequest, res, next) => {
-  try {
-    const displayName = req.body?.displayName;
-    const cycleLength = req.body?.cycleLength;
-    const theme = req.body?.theme;
-    if (typeof displayName !== "string" || displayName.trim().length < 1 || displayName.trim().length > 100) { res.status(400).json({ error: "Nome inválido." }); return; }
-    if (!Number.isInteger(cycleLength) || cycleLength < 20 || cycleLength > 45) { res.status(400).json({ error: "A duração do ciclo deve ficar entre 20 e 45 dias." }); return; }
-    if (!(["rosa", "lilas", "verde", "terracota"] as unknown[]).includes(theme)) { res.status(400).json({ error: "Tema inválido." }); return; }
-    const user = await prisma.user.update({ where: { id: req.userId! }, data: { displayName: displayName.trim(), cycleLength, theme } });
-    res.json({ user: publicUser(user) });
-  } catch (error) { next(error); }
-});
+app.use("/api/profile", profileRoutes);
 
 app.get("/api/records", requireAuth, async (req: AuthRequest, res, next) => {
   try {
