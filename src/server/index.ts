@@ -7,6 +7,7 @@ import helmet from "helmet";
 import rateLimit from "express-rate-limit";
 import { Prisma } from "../../generated/prisma/client";
 import { prisma } from "./db/prisma";
+import profileRoutes from "../routes/profileRoutes";
 import { requireAuth, type AuthRequest } from "./middleware/requireAuth";
 
 const scrypt = promisify(scryptCallback);
