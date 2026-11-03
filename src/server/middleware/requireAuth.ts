@@ -53,8 +53,13 @@ function verifySession(
 
   const [encoded, signature] = token.split(".");
 
-  if (!encoded || !signature) return null;
-
+  if (
+    !encoded ||
+    !signature ||
+    token.split(".").length !== 2
+  ) {
+    return null;
+  }
   const expected = createHmac("sha256", sessionSecret!)
     .update(encoded)
     .digest();
@@ -81,6 +86,7 @@ function verifySession(
 
     if (
       !Number.isSafeInteger(payload.userId) ||
+      payload.userId <= 0 ||
       typeof payload.expiresAt !== "number" ||
       !Number.isFinite(payload.expiresAt) ||
       payload.expiresAt <= Date.now()

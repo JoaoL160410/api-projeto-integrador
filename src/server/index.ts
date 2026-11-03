@@ -164,12 +164,31 @@ async function hashPassword(password: string): Promise<string> {
   return `scrypt$${salt}$${key.toString("hex")}`;
 }
 
-async function checkPassword(password: string, stored: string): Promise<boolean> {
+async function checkPassword(
+  password: string,
+  stored: string
+): Promise<boolean> {
   const [scheme, salt, expectedHex] = stored.split("$");
-  if (scheme !== "scrypt" || !salt || !expectedHex) return false;
+
+  if (
+    scheme !== "scrypt" ||
+    !salt ||
+    !expectedHex ||
+    !/^[a-f0-9]{32}$/i.test(salt) ||
+    !/^[a-f0-9]{128}$/i.test(expectedHex)
+  ) {
+    return false;
+  }
+
   const expected = Buffer.from(expectedHex, "hex");
-  const actual = (await scrypt(password, salt, expected.length)) as Buffer;
-  return actual.length === expected.length && timingSafeEqual(actual, expected);
+
+  const actual = (await scrypt(
+    password,
+    salt,
+    64
+  )) as Buffer;
+
+  return timingSafeEqual(actual, expected);
 }
 
 const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: "draft-8", legacyHeaders: false, message: { error: "Muitas tentativas. Aguarde alguns minutos e tente novamente." } });
