@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE `User` ADD COLUMN `avatar` MEDIUMTEXT NULL,
+    ADD COLUMN `motto` VARCHAR(140) NULL,
+    ADD COLUMN `avatarIcon` VARCHAR(8) NULL,
+    ADD COLUMN `fontScale` VARCHAR(10) NOT NULL DEFAULT 'normal';

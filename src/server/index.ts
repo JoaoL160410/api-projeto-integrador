@@ -8,6 +8,7 @@ import rateLimit from "express-rate-limit";
 import { Prisma } from "../../generated/prisma/client";
 import { prisma } from "./db/prisma";
 import profileRoutes from "../routes/profileRoutes";
+import { publicUser } from "../controllers/profileController";
 import { requireAuth, type AuthRequest } from "./middleware/requireAuth";
 
 const scrypt = promisify(scryptCallback);
@@ -154,9 +155,6 @@ function publicRecord(record: { date: Date; flow: string | null; mood: string | 
   };
 }
 
-function publicUser(user: { id: number; username: string; displayName: string | null; cycleLength: number; theme: string }) {
-  return { id: user.id, username: user.username, displayName: user.displayName ?? "", cycleLength: user.cycleLength, theme: user.theme };
-}
 
 async function hashPassword(password: string): Promise<string> {
   const salt = randomBytes(16).toString("hex");

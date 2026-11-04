@@ -14,6 +14,10 @@ model User {
   displayName  String?       @db.VarChar(100)
   cycleLength  Int           @default(28)
   theme        String        @default("rosa") @db.VarChar(20)
+  avatar       String?       @db.MediumText
+  motto        String?       @db.VarChar(140)
+  avatarIcon   String?       @db.VarChar(8)
+  fontScale    String        @default("normal") @db.VarChar(10)
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   records      CycleRecord[]

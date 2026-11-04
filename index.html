@@ -30,10 +30,41 @@
  <div class="sheet-backdrop" data-close-account></div>
  <section class="account-panel" role="dialog" aria-modal="true" aria-labelledby="conta-titulo">
   <div class="account-head"><div><small>MINHA CONTA</small><h2 id="conta-titulo">Personalizar Florescer</h2></div><button class="icon-btn" data-close-account>×</button></div>
-  <div class="account-avatar" id="account-avatar">F</div>
+  <div class="avatar-editor">
+   <div class="account-avatar" id="account-avatar">F</div>
+   <div class="avatar-actions">
+    <label class="avatar-upload">Escolher foto<input id="perfil-foto" type="file" accept="image/jpeg,image/png,image/webp" hidden></label>
+    <button type="button" id="remover-foto" class="link-btn" hidden>Remover foto</button>
+    <small>JPG, PNG ou WebP. A foto é recortada em formato redondo.</small>
+   </div>
+  </div>
+  <fieldset class="perfil-grupo">
+   <legend>Ou escolha um ícone</legend>
+   <div class="icon-picker" id="perfil-icones" role="radiogroup" aria-label="Ícone do perfil"></div>
+  </fieldset>
   <label>Nome exibido<input id="perfil-nome" maxlength="30"></label>
   <label>Nome de usuário<input id="perfil-user" disabled></label>
-  <label>Cor do aplicativo<select id="perfil-tema"><option value="rosa">Rosa Florescer</option><option value="lilas">Lilás</option><option value="verde">Verde suave</option><option value="terracota">Terracota</option></select></label>
+  <label>Sua frase<input id="perfil-frase" maxlength="140" placeholder="Ex.: Um dia de cada vez 🌱"><small class="hint">Aparece na sua tela inicial.</small></label>
+  <fieldset class="perfil-grupo">
+   <legend>Cor do aplicativo</legend>
+   <div class="theme-picker" id="perfil-tema" role="radiogroup" aria-label="Cor do aplicativo">
+    <button type="button" data-theme="rosa" style="--sw:#b95f7b" aria-label="Rosa Florescer"><span>Rosa</span></button>
+    <button type="button" data-theme="lilas" style="--sw:#8d6aa8" aria-label="Lilás"><span>Lilás</span></button>
+    <button type="button" data-theme="verde" style="--sw:#648b76" aria-label="Verde suave"><span>Verde</span></button>
+    <button type="button" data-theme="terracota" style="--sw:#a96554" aria-label="Terracota"><span>Terracota</span></button>
+    <button type="button" data-theme="azul" style="--sw:#5b7fa6" aria-label="Azul sereno"><span>Azul</span></button>
+    <button type="button" data-theme="amora" style="--sw:#7a3b5e" aria-label="Amora"><span>Amora</span></button>
+    <button type="button" data-theme="dourado" style="--sw:#a5803a" aria-label="Dourado"><span>Dourado</span></button>
+   </div>
+  </fieldset>
+  <fieldset class="perfil-grupo">
+   <legend>Tamanho do texto</legend>
+   <div class="segmented" id="perfil-fonte" role="radiogroup" aria-label="Tamanho do texto">
+    <button type="button" data-font="normal">Normal</button>
+    <button type="button" data-font="grande">Grande</button>
+    <button type="button" data-font="maior">Maior</button>
+   </div>
+  </fieldset>
   <label>Duração padrão do ciclo<input id="perfil-ciclo" type="number" min="20" max="45" value="28"></label>
   <button id="salvar-perfil" class="primary">Salvar personalização</button>
   <hr>
@@ -48,7 +79,7 @@
 <main>
 <section id="normal" class="normal">
 <section id="inicio" class="dashboard-hero">
-  <div class="hello"><span class="eyebrow">UM MOMENTO SÓ SEU</span><h1 id="saudacao">Seu espaço de cuidado</h1><p>Um dia de cada vez. Seu calendário, suas anotações e tudo sobre seu ciclo em um só lugar.</p></div>
+  <div class="hello"><span class="eyebrow">UM MOMENTO SÓ SEU</span><h1 id="saudacao">Seu espaço de cuidado</h1><p id="frase-inicial">Um dia de cada vez. Seu calendário, suas anotações e tudo sobre seu ciclo em um só lugar.</p></div>
   <div class="cycle-orb"><div class="orb-inner"><span id="dia-ciclo-label">Dia do ciclo</span><strong id="dia-ciclo">—</strong><small id="fase-ciclo">Adicione uma menstruação para começar</small></div></div>
   <div class="hero-actions"><button id="registrar-hoje" class="primary big">Registrar meu dia</button><button id="abrir-calendario" class="secondary big">Explorar calendário</button></div>
 </section>

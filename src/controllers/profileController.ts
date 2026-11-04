@@ -1,4 +1,3 @@
-
 import type { Request, Response, NextFunction } from "express";
 import { prisma } from "../server/db/prisma";
 
@@ -6,19 +5,36 @@ type AuthRequest = Request & {
   userId?: number;
 };
 
-function publicUser(user: {
+export const THEMES = ["rosa", "lilas", "verde", "terracota", "azul", "amora", "dourado"] as const;
+export const FONT_SCALES = ["normal", "grande", "maior"] as const;
+export const AVATAR_ICONS = ["🌸", "🌷", "🌻", "🌙", "✨", "🦋", "🍓", "🌿", "☀️", "💜", "🐱", "🌈"] as const;
+// Foto já reduzida no navegador (256x256); o limite evita registros gigantes no banco.
+const MAX_AVATAR_LENGTH = 120_000;
+const AVATAR_PATTERN = /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+=*$/;
+
+type ProfileUser = {
   id: number;
   username: string;
   displayName: string | null;
   cycleLength: number;
   theme: string;
-}) {
+  avatar?: string | null;
+  avatarIcon?: string | null;
+  motto?: string | null;
+  fontScale?: string;
+};
+
+export function publicUser(user: ProfileUser) {
   return {
     id: user.id,
     username: user.username,
     displayName: user.displayName ?? "",
     cycleLength: user.cycleLength,
     theme: user.theme,
+    avatar: user.avatar ?? null,
+    avatarIcon: user.avatarIcon ?? null,
+    motto: user.motto ?? "",
+    fontScale: user.fontScale ?? "normal",
   };
 }
 
@@ -28,9 +44,7 @@ export async function updateProfile(
   next: NextFunction
 ): Promise<void> {
   try {
-    const displayName = req.body?.displayName;
-    const cycleLength = req.body?.cycleLength;
-    const theme = req.body?.theme;
+    const { displayName, cycleLength, theme, avatar, avatarIcon, motto, fontScale } = req.body ?? {};
 
     if (
       typeof displayName !== "string" ||
@@ -52,10 +66,33 @@ export async function updateProfile(
       return;
     }
 
-    if (
-      !(["rosa", "lilas", "verde", "terracota"] as unknown[]).includes(theme)
-    ) {
+    if (!(THEMES as readonly unknown[]).includes(theme)) {
       res.status(400).json({ error: "Tema inválido." });
+      return;
+    }
+
+    // Campos opcionais: ausentes (undefined) mantêm o valor atual; null limpa.
+    if (
+      avatar !== undefined &&
+      avatar !== null &&
+      (typeof avatar !== "string" || avatar.length > MAX_AVATAR_LENGTH || !AVATAR_PATTERN.test(avatar))
+    ) {
+      res.status(400).json({ error: "Foto inválida. Use uma imagem JPG, PNG ou WebP." });
+      return;
+    }
+
+    if (avatarIcon !== undefined && avatarIcon !== null && !(AVATAR_ICONS as readonly unknown[]).includes(avatarIcon)) {
+      res.status(400).json({ error: "Ícone inválido." });
+      return;
+    }
+
+    if (motto !== undefined && (typeof motto !== "string" || motto.trim().length > 140)) {
+      res.status(400).json({ error: "A frase pode ter até 140 caracteres." });
+      return;
+    }
+
+    if (fontScale !== undefined && !(FONT_SCALES as readonly unknown[]).includes(fontScale)) {
+      res.status(400).json({ error: "Tamanho de texto inválido." });
       return;
     }
 
@@ -70,6 +107,10 @@ export async function updateProfile(
         displayName: displayName.trim(),
         cycleLength,
         theme,
+        ...(avatar !== undefined ? { avatar } : {}),
+        ...(avatarIcon !== undefined ? { avatarIcon } : {}),
+        ...(motto !== undefined ? { motto: motto.trim() || null } : {}),
+        ...(fontScale !== undefined ? { fontScale } : {}),
       },
     });
 

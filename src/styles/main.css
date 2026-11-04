@@ -103,3 +103,51 @@ main{max-width:1160px;margin:auto}.normal{max-width:none}.dashboard-hero{positio
 .top .brand{display:flex;align-items:center}
 .top .brand .logo-img{display:block;height:54px;width:auto}
 @media(max-width:760px){.landing-logo .logo-img{height:88px}.top .brand .logo-img{height:46px}}
+
+/* ===== Personalização do perfil ===== */
+.theme-lilas{--pink:#8d6aa8;--pink-dark:#5f4573;--pink2:#ece2f4;--pink3:#f7f2fb}
+.theme-verde{--pink:#648b76;--pink-dark:#3f5e4d;--pink2:#e0ece5;--pink3:#f2f8f4}
+.theme-terracota{--pink:#a96554;--pink-dark:#743f33;--pink2:#f3e0da;--pink3:#fbf2ef}
+.theme-azul{--accent-account:#5b7fa6;--pink:#5b7fa6;--pink-dark:#3b5675;--pink2:#dfe8f3;--pink3:#f2f6fb}
+.theme-amora{--accent-account:#7a3b5e;--pink:#7a3b5e;--pink-dark:#55263f;--pink2:#efdbe6;--pink3:#f9f0f5}
+.theme-dourado{--accent-account:#a5803a;--pink:#a5803a;--pink-dark:#6f5523;--pink2:#f2e8d3;--pink3:#fbf7ee}
+.theme-azul .primary,.theme-azul .profile{background:#5b7fa6!important}
+.theme-amora .primary,.theme-amora .profile{background:#7a3b5e!important}
+.theme-dourado .primary,.theme-dourado .profile{background:#a5803a!important}
+.profile{background-size:cover;background-position:center;overflow:hidden}
+.profile.has-photo{color:transparent}
+.profile.has-icon,.account-avatar.has-icon{font-size:1.15em}
+html[data-font="grande"] body{zoom:1.1}
+html[data-font="maior"] body{zoom:1.22}
+
+.avatar-editor{display:flex;align-items:center;gap:16px}
+.account-avatar{flex:none;width:84px;height:84px;background-color:var(--pink,#c86d82);background-size:cover;background-position:center;box-shadow:0 0 0 4px #fff,0 0 0 6px var(--pink2,#f8dfe6)}
+.account-avatar.has-photo{color:transparent}
+.account-avatar.has-icon{font-size:38px;background-color:var(--pink3,#fff0f4)}
+.avatar-actions{display:grid;gap:6px;justify-items:start}
+.avatar-actions small,.account-panel .hint{color:#7a6e70;font-size:12px;font-weight:400;line-height:1.4}
+.avatar-upload{display:inline-block;padding:9px 16px;border-radius:999px;background:var(--pink3,#fff0f4);border:1px solid var(--pink2,#f8dfe6);color:var(--pink-dark,#7d4258);font-weight:700;font-size:14px;cursor:pointer}
+.avatar-upload:hover{background:var(--pink2,#f8dfe6)}
+.avatar-upload:focus-within{outline:2px solid var(--pink,#b95f7b);outline-offset:2px}
+.link-btn{border:0;background:none;padding:0;color:#9d292f;font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
+
+.perfil-grupo{border:0;margin:0;padding:0;display:grid;gap:8px;min-width:0}
+.perfil-grupo legend{padding:0;margin-bottom:8px;font-size:14px;font-weight:650}
+.icon-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(40px,1fr));gap:6px}
+.icon-picker button{aspect-ratio:1;border:1px solid #eadfdd;border-radius:12px;background:#fff;font-size:20px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.icon-picker button[data-icon=""]{font-size:13px;font-weight:800;color:var(--pink-dark,#7d4258)}
+.icon-picker button:hover{border-color:var(--pink,#b95f7b)}
+.icon-picker button.active{border:2px solid var(--pink,#b95f7b);background:var(--pink3,#fff0f4)}
+
+.theme-picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(76px,1fr));gap:8px}
+.theme-picker button{display:grid;justify-items:center;gap:6px;padding:10px 4px 8px;border:1px solid #eadfdd;border-radius:14px;background:#fff;cursor:pointer;font:inherit;font-size:12px;color:#5d5254}
+.theme-picker button::before{content:'';width:28px;height:28px;border-radius:50%;background:var(--sw)}
+.theme-picker button.active{border:2px solid var(--sw);background:color-mix(in srgb,var(--sw) 8%,#fff);font-weight:700;color:#352f37}
+.theme-picker button.active::before{box-shadow:0 0 0 3px #fff inset}
+
+.segmented{display:grid;grid-template-columns:repeat(3,1fr);background:#f6efed;padding:4px;border-radius:14px;gap:4px}
+.segmented button{border:0;background:transparent;padding:9px;border-radius:11px;font:inherit;font-size:14px;cursor:pointer;color:#5d5254}
+.segmented button[data-font="grande"]{font-size:16px}
+.segmented button[data-font="maior"]{font-size:18px}
+.segmented button.active{background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.06);font-weight:700;color:#352f37}
+#salvar-perfil:disabled{opacity:.7;cursor:progress}
